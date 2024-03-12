@@ -4,10 +4,10 @@ function getComputerChoice() {
     return computerOptions[Math.floor(Math.random()*computerOptions.length)]
 }
 // 2. User input the answer
-let playerInput = prompt("Rock, paper or scissors?",)
+// let playerInput = prompt("Rock, paper or scissors?",)
 // 3. Check who won or if it's a draw
-let playerSelection = playerInput.toLowerCase();
-let computerSelection = getComputerChoice();
+// let playerSelection = playerInput.toLowerCase();
+// let computerSelection = getComputerChoice();
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
@@ -34,30 +34,35 @@ function playRound(playerSelection, computerSelection) {
         return "Fuck you! That's not how you play it."
     }
 }
-// Inform of the result the whole world
-alert(playRound(playerSelection, computerSelection))
 
-//Looping/repeating the game 5 times
-function playGame(times) {
-    if (times > 0) {
-        let playerInput = prompt("Rock, paper or scissors?",);
-        let playerSelection = playerInput.toLowerCase();
-        playRound(playerSelection, computerSelection);
-        let playerInput = prompt("Rock, paper or scissors?",);
-        let playerSelection = playerInput.toLowerCase();
-        playRound(playerSelection, computerSelection);
-        let playerInput = prompt("Rock, paper or scissors?",);
-        let playerSelection = playerInput.toLowerCase();
-        playRound(playerSelection, computerSelection);
-        let playerInput = prompt("Rock, paper or scissors?",);
-        let playerSelection = playerInput.toLowerCase();
-        playRound(playerSelection, computerSelection);
-        let playerInput = prompt("Rock, paper or scissors?",);
-        let playerSelection = playerInput.toLowerCase();
-        playRound(playerSelection, computerSelection);
-    }
+// Make the game play 5 times console.log
+function playGame() {
+    playerInput = prompt("Rock, paper or scissors?",);
+    playerSelection = playerInput.toLowerCase();
+    computerSelection = getComputerChoice();
+    let result1 = playRound(playerSelection, computerSelection);
+    console.log(result1);
+    playerInput = prompt("Rock, paper or scissors?",);
+    playerSelection = playerInput.toLowerCase();
+    computerSelection = getComputerChoice();
+    let result2 = playRound(playerSelection, computerSelection);
+    console.log(result2);
+    playerInput = prompt("Rock, paper or scissors?",);
+    playerSelection = playerInput.toLowerCase();
+    computerSelection = getComputerChoice();
+    let result3 = playRound(playerSelection, computerSelection);
+    console.log(result3);
+    playerInput = prompt("Rock, paper or scissors?",);
+    playerSelection = playerInput.toLowerCase();
+    computerSelection = getComputerChoice();
+    let result4 = playRound(playerSelection, computerSelection);
+    console.log(result4);
+    playerInput = prompt("Rock, paper or scissors?",);
+    playerSelection = playerInput.toLowerCase();
+    computerSelection = getComputerChoice();
+    let result5 = playRound(playerSelection, computerSelection);
+    console.log(result5)
 }
 
-console.log(playGame(5))
-
-
+// Inform of the result the whole world
+console.log(playGame())
