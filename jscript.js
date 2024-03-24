@@ -3,103 +3,79 @@ function getComputerChoice() {
     const computerOptions = ["rock", "paper", "scissors"]
     return computerOptions[Math.floor(Math.random()*computerOptions.length)]
 }
+
+let playerScore = document.querySelector("#player");
+let computerScore = document.querySelector("#computer");
+let draw = document.querySelector("#draw");
+
+// Initialize scores
+let playerScoreCount = 0
+let computerScoreCount = 0
+let drawCount = 0
+
+// Function to update scores
+function updateScores() {
+    playerScore.textContent = "Player score = " + playerScoreCount;
+    computerScore.textContent = "Computer score = " + computerScoreCount;
+    draw.textContent = "Draw score = " + drawCount;
+}
+
 // 2. User input the answer
-// let playerInput = prompt("Rock, paper or scissors?",)
-
-// let playerSelection = playerInput.toLowerCase();
-// let computerSelection = getComputerChoice();
-
 function playRound(playerSelection, computerSelection) {
+if (playerScoreCount === 5 || computerScoreCount ===5 || drawCount === 5) {
+    alertWinner();
+    return;
+}
+
     if (playerSelection === computerSelection) {
-        return "It's a draw!";
-    // If rock (paper - win, scissors - lose, rock - draw)
-
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "You won!";
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        return "You lost!";
-
-    // if paper (paper - draw, scissors - win, rock - lose)
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return "You lost!";
-    } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return "You won!";
-
-    // If scissors (paper - lose, scissors - draw, rock - win)
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return "You won!";
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return "You lost!"
+        drawCount++;
+        alert("It's a draw!");
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+        playerScoreCount++;
+        alert("You won!");
     } else {
-        return "Fuck you! That's not how you play it."
+        computerScoreCount++;
+        alert("You lost!");
     }
-}
 
-// Make the game play 5 times, console.log
-function playGame() {
-    let results = [];
-
-    playerInput = prompt("Rock, paper or scissors?",);
-    playerSelection = playerInput.toLowerCase();
-    computerSelection = getComputerChoice();
-    let result1 = playRound(playerSelection, computerSelection);
-    console.log(result1);
-
-    playerInput = prompt("Rock, paper or scissors?",);
-    playerSelection = playerInput.toLowerCase();
-    computerSelection = getComputerChoice();
-    let result2 = playRound(playerSelection, computerSelection);
-    console.log(result2);
-    results.push(result2);
-    playerInput = prompt("Rock, paper or scissors?",);
-    playerSelection = playerInput.toLowerCase();
-    computerSelection = getComputerChoice();
-    let result3 = playRound(playerSelection, computerSelection);
-    console.log(result3);
-    results.push(result3);
-    playerInput = prompt("Rock, paper or scissors?",);
-    playerSelection = playerInput.toLowerCase();
-    computerSelection = getComputerChoice();
-    let result4 = playRound(playerSelection, computerSelection);
-    console.log(result4);
-    results.push(result4);
-    playerInput = prompt("Rock, paper or scissors?",);
-    playerSelection = playerInput.toLowerCase();
-    computerSelection = getComputerChoice();
-    let result5 = playRound(playerSelection, computerSelection);
-    console.log(result5)
-    results.push(result5);
-
-        // Check who won in 5 times battle
-    let outcome = calculateGameOutcome(results)
-    console.log(outcome)
-    alert(outcome)
-}
-
-// Calculate who won in 5 time battle
-function calculateGameOutcome(results) {
-    let wins = 0;
-    let losses = 0;
-    let draws = 0;
-
-    results.forEach(result => {
-        if (result === "You won!") {
-            wins++;
-        } else if (result === "You lost!") {
-            losses++
-        } else if (result === "It's a draw!") {
-            draws++
-        }
-    });
-
-    if (wins > losses) {
-        return "Player wins the game!";
-    } else if (losses > wins) {
-        return "Computer wins the game!";
-    } else if (wins === losses) {
-        return "It's a tie";
-    }
+    updateScores();
+    alertWinner();
 }
 
 // Play the game
-playGame()
+let rock = document.querySelector("#rock")
+let paper = document.querySelector("#paper")
+let scissors = document.querySelector("#scissors")
+
+rock.addEventListener("click", function () {
+    let playerSelection = "rock";
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+})
+
+paper.addEventListener("click", function () {
+    let playerSelection = "paper";
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+})
+
+scissors.addEventListener("click", function () {
+    let playerSelection = "scissors";
+    let computerSelection = getComputerChoice();
+    let result = playRound(playerSelection, computerSelection);
+})
+
+function alertWinner () {
+    if (playerScoreCount === 5) {
+        alert("You won the game!!!");
+    } else if (computerScoreCount === 5) {
+        alert("You lost the game!!!");
+    } else if (drawCount === 5) {
+        alert("The game ended and it's a draw!!!");
+    }
+}
+
